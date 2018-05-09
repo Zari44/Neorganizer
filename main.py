@@ -16,11 +16,11 @@ if __name__ == '__main__':
    filemenu = tk.Menu(menubar, tearoff=0)
 
    filemenu.add_command(label="New", command=donothing)
-   filemenu.add_command(label="Load community", command=neorganizer.loadCommunityWorkbook)
-   filemenu.add_command(label="Open", command=donothing)
-   filemenu.add_command(label="Save", command=donothing)
-   filemenu.add_command(label="Save as...", command=donothing)
-   filemenu.add_command(label="Close", command=donothing)
+   filemenu.add_command(label="Load community", command=neorganizer.loadCommunityWorkboodAndPrintContent)
+   # filemenu.add_command(label="Open", command=donothing)
+   # filemenu.add_command(label="Save", command=donothing)
+   # filemenu.add_command(label="Save as...", command=donothing)
+   # filemenu.add_command(label="Close", command=donothing)
 
    filemenu.add_separator()
 
