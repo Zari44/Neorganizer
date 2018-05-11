@@ -3,7 +3,8 @@ import tkinter as tk
 # from openpyxl import *
 from neorganizer import *
 from Gui import *
-# from TkTreectrl as treectrl
+# from TkTreectrl import *
+a# import Multilistbox
 
 def donothing():
    filewin = tk.Toplevel(root)
@@ -16,7 +17,7 @@ if __name__ == '__main__':
    root.geometry("700x300")
    root.resizable()
    root.title("Neorganizer")
-   listBox = tk.Listbox(root, width=100, height=100)
+   listBox = tk.Listbox(root, width=100, height=100,bg='white')
    listBox.grid(row=0, column=0, sticky=tk.W)
    listBox.pack()
    # textFrame.insert(END,"siema")

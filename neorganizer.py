@@ -2,6 +2,7 @@ from tkinter import filedialog
 from openpyxl import *
 from pearson import *
 import tkinter as tk
+import tkinter.ttk as ttk
 
 class Neorganizer:
 
@@ -52,6 +53,8 @@ class Neorganizer:
                 for info in pearson.getInfoList():
                     c = c + 1
                     tk.Label(self.text_frame, text=info, bg = 'snow').grid(row=r,column=c, sticky=tk.W)
+                    ttk.Separator(self.text_frame, orient=tk.VERTICAL).grid(column=c+1, row=r, rowspan=len(self.community_members), sticky='ns')
+                    # self.text_frame.grid_columnconfigure(4,minsize=125)
                 # tk.Label(self.text_frame, pearson.getString()+"\n").grid()
                 # self.text_frame.insert(tk.END,pearson.getString()+"\n")
         else:
