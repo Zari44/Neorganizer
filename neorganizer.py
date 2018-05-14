@@ -12,6 +12,9 @@ class Neorganizer:
         self.loaded = False
         self.root = root
         self.text_frame = text_frame
+        self.number_of_circles = 3
+        self.circles = [[] for x in range(self.number_of_circles)]
+        self.initCircleTextBox()
 
 
     def loadCommunityWorkboodAndPrintContent(self):
@@ -28,7 +31,6 @@ class Neorganizer:
             ws = wb.active
             self.loaded = True
         return ws
-
 
     def parseWorkSheet(self, ws):
         for row in ws.rows:
@@ -52,42 +54,53 @@ class Neorganizer:
         label.pack()
         button.pack()
 
+    def displyMembersInsideTextBox(self, textBox, members):
+        r = 0
+        for pearson in members:
+            r = r + 1
+            c = 0
+            for info in pearson.getInfoList():
+                c = c + 1
+                tk.Label(textBox, text=info, bg = 'white').grid(row=r, column=c, sticky=tk.W, padx=10)
+                ttk.Separator(textBox, orient=tk.VERTICAL).grid(column=c+1, row=r, rowspan=len(members), sticky='ns')
+
     def displayCommunityMembers(self):
         if self.loaded:
-            r = 0
-            for pearson in self.community_members:
-                r = r + 1
-                c = 0
-                for info in pearson.getInfoList():
-                    c = c + 1
-                    tk.Label(self.text_frame, text=info, bg = 'white').grid(row=r, column=c, sticky=tk.W, padx=10)
-                    ttk.Separator(self.text_frame, orient=tk.VERTICAL).grid(column=c+1, row=r, rowspan=len(self.community_members), sticky='ns')
-                    # self.text_frame.grid_columnconfigure(4,minsize=125)
-                # tk.Label(self.text_frame, pearson.getString()+"\n").grid()
-                # self.text_frame.insert(tk.END,pearson.getString()+"\n")
+            self.displyMembersInsideTextBox(self.text_frame, self.community_members)
         else:
             self.displayLoadCommunityFirstWarning()
 
     def pickNewCircles(self):
         if self.loaded:
-            number_of_circles = 3
-            circles = [[] for x in range(number_of_circles)]
+            self.circles = [[] for x in range(self.number_of_circles)]
+
             number_of_members = len(self.community_members)
             picked_indices = []
             while len(picked_indices) < number_of_members:
-                for i in range(number_of_circles):
+                for i in range(self.number_of_circles):
                     if len(picked_indices) < number_of_members:
                         index = random.randrange(number_of_members)
-                        while (index in picked_indices) and (len(picked_indices)<number_of_members):
+                        while (index in picked_indices) and (len(picked_indices) < number_of_members):
                             index = random.randrange(number_of_members)
                         picked_indices.append(index)
-                        circles[i].append(self.community_members[index])
+                        self.circles[i].append(self.community_members[index])
 
-            for circle in circles:
-                print("--- circle ---")
-                for member in circle:
-                    member.printName()
+            self.displayCircles()
         else:
             self.displayLoadCommunityFirstWarning()
 
+    def initCircleTextBox(self):
+        self.circleTextBox = [tk.Text(self.root, bg='white', state=tk.DISABLED) for x in range(self.number_of_circles)]
+
+    def destroyCircleTextBox(self):
+        for circle in self.circleTextBox:
+            circle.destroy()
+
+    def displayCircles(self):
+        self.text_frame.destroy()
+        self.destroyCircleTextBox()
+        self.initCircleTextBox()
+        for i in range(self.number_of_circles):
+            self.displyMembersInsideTextBox(self.circleTextBox[i], self.circles[i])
+            self.circleTextBox[i].pack()
 

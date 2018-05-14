@@ -17,7 +17,7 @@ if __name__ == '__main__':
    root.geometry("700x300")
    root.resizable()
    root.title("Neorganizer")
-   listBox = tk.Text(root, width=100, height=100, bg='white', state=tk.DISABLED)
+   listBox = tk.Listbox(root, width=100, height=100, bg='white')
    listBox.grid(row=0, column=0, sticky=tk.W)
    listBox.pack()
    # textFrame.insert(END,"siema")
