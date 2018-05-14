@@ -4,7 +4,7 @@ import tkinter as tk
 from neorganizer import *
 from Gui import *
 # from TkTreectrl import *
-a# import Multilistbox
+# import Multilistbox
 
 def donothing():
    filewin = tk.Toplevel(root)
@@ -17,7 +17,7 @@ if __name__ == '__main__':
    root.geometry("700x300")
    root.resizable()
    root.title("Neorganizer")
-   listBox = tk.Listbox(root, width=100, height=100,bg='white')
+   listBox = tk.Text(root, width=100, height=100, bg='white', state=tk.DISABLED)
    listBox.grid(row=0, column=0, sticky=tk.W)
    listBox.pack()
    # textFrame.insert(END,"siema")
@@ -26,7 +26,7 @@ if __name__ == '__main__':
    filemenu = tk.Menu(menubar, tearoff=0)
 
    filemenu.add_command(label="Load community", command=neorganizer.loadCommunityWorkboodAndPrintContent)
-   # filemenu.add_command(label="Display", command=donothing())
+   filemenu.add_command(label="Pick new circles", command=neorganizer.pickNewCircles)
    # filemenu.add_command(label="Save", command=donothing)
    # filemenu.add_command(label="Save as...", command=donothing)
    # filemenu.add_command(label="Close", command=donothing)

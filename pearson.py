@@ -21,10 +21,11 @@ class Pearson:
     def print(self):
         print ("Pearson: " + self.name_and_surname + ", phone: " + self.phone + ", address: " + self.address + ", email: " + self.email)
 
+    def printName(self):
+        print ("Pearson: " + self.name_and_surname)
 
     def getString(self):
         return self.name_and_surname + "\t" + self.phone + "\t" + self.address + "\t" + self.email
-
 
     def getInfoList(self):
         return [self.name_and_surname, self.phone, self.email, self.address]
