@@ -29,3 +29,6 @@ class Pearson:
 
     def getInfoList(self):
         return [self.name_and_surname, self.phone, self.email, self.address]
+
+    def getName(self):
+        return [self.name_and_surname]
