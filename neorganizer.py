@@ -30,6 +30,9 @@ class Neorganizer:
         self.text_frame = tk.Listbox(self.current_screen , bg='white')
         self.text_frame.pack()
 
+    def initCircleTextBox(self):
+        self.circleTextBox = [tk.Text(self.current_screen, bg='white', state=tk.DISABLED) for x in range(self.number_of_circles)]
+
     def loadCommunityWorkboodAndPrintContent(self):
         self.clearScr()
         self.createMainScreen()
@@ -102,13 +105,6 @@ class Neorganizer:
             self.displayCircles()
         else:
             self.displayLoadCommunityFirstWarning()
-
-    def initCircleTextBox(self):
-        self.circleTextBox = [tk.Text(self.current_screen, bg='white', state=tk.DISABLED) for x in range(self.number_of_circles)]
-
-    def destroyCircleTextBox(self):
-        for circle in self.circleTextBox:
-            circle.destroy()
 
     def displayCircles(self):
         self.clearScr()
